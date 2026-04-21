@@ -1,17 +1,16 @@
 public class TicTacToe {
 
-    public static boolean isValidMove(char[][] board, int row, int col) {
-        // Check bounds
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
-        }
+    public static void makeMove(char[][] board, int row, int col, char symbol) {
+        board[row][col] = symbol;
+    }
 
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
+    public static void printBoard(char[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
-
-        return true;
     }
 
     public static void main(String[] args) {
@@ -21,13 +20,8 @@ public class TicTacToe {
                 {'-', '-', '-'}
         };
 
-        int row = 1;
-        int col = 1;
+        makeMove(board, 1, 1, 'X'); // example move
 
-        if (isValidMove(board, row, col)) {
-            System.out.println("Move is valid");
-        } else {
-            System.out.println("Invalid move");
-        }
+        printBoard(board);
     }
 }
