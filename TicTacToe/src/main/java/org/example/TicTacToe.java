@@ -1,23 +1,33 @@
 public class TicTacToe {
 
-
-    public int[] slotToIndices(int slot) {
-        if (slot < 1 || slot > 9) {
-            throw new IllegalArgumentException("Slot must be between 1 and 9.");
+    public static boolean isValidMove(char[][] board, int row, int col) {
+        // Check bounds
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
         }
 
-        slot -= 1;
-        int row = slot / 3;
-        int col = slot % 3;
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
 
-        return new int[] { row, col };
+        return true;
     }
 
-
     public static void main(String[] args) {
-        TicTacToe conv = new TicTacToe();
-        int slot = 4;
-        int[] indices = conv.slotToIndices(slot);
-        System.out.println("Slot " + slot + " → row = " + indices[0] + ", col = " + indices[1]);
+        char[][] board = {
+                {'-', '-', '-'},
+                {'-', '-', '-'},
+                {'-', '-', '-'}
+        };
+
+        int row = 1;
+        int col = 1;
+
+        if (isValidMove(board, row, col)) {
+            System.out.println("Move is valid");
+        } else {
+            System.out.println("Invalid move");
+        }
     }
 }
