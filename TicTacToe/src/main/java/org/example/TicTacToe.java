@@ -1,20 +1,23 @@
-import java.util.Scanner;
+public class TicTacToe {
 
-public class TicTacToe
-{
 
-    public static int getUserInput() {
-        Scanner scanner = new Scanner(System.in);
-        int slot;
+    public int[] slotToIndices(int slot) {
+        if (slot < 1 || slot > 9) {
+            throw new IllegalArgumentException("Slot must be between 1 and 9.");
+        }
 
-        System.out.print("Enter a slot number (1-9): ");
-        slot = scanner.nextInt();
+        slot -= 1;
+        int row = slot / 3;
+        int col = slot % 3;
 
-        return slot;
+        return new int[] { row, col };
     }
 
+
     public static void main(String[] args) {
-        int userChoice = getUserInput();
-        System.out.println("You selected slot: " + userChoice);
+        TicTacToe conv = new TicTacToe();
+        int slot = 4;
+        int[] indices = conv.slotToIndices(slot);
+        System.out.println("Slot " + slot + " → row = " + indices[0] + ", col = " + indices[1]);
     }
 }
