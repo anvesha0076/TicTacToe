@@ -1,34 +1,29 @@
 public class TicTacToe {
 
-    public static boolean checkWin(char[][] board, char symbol) {
-        // Check rows and columns
+    public static boolean isDraw(char[][] board) {
+        // Check for any empty cell
         for (int i = 0; i < 3; i++) {
-            if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) ||
-                    (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
-                return true;
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == '-') {
+                    return false;
+                }
             }
         }
 
-        // Check diagonals
-        if ((board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
-                (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     public static void main(String[] args) {
         char[][] board = {
-                {'X', 'X', 'X'},
-                {'-', 'O', '-'},
-                {'O', '-', 'O'}
+                {'X', 'O', 'X'},
+                {'X', 'O', 'O'},
+                {'O', 'X', 'X'}
         };
 
-        if (checkWin(board, 'X')) {
-            System.out.println("Player X wins!");
+        if (isDraw(board)) {
+            System.out.println("The game is a draw!");
         } else {
-            System.out.println("No winner yet.");
+            System.out.println("Moves still remain.");
         }
     }
 }
